@@ -14,8 +14,8 @@ contract UserStorage {
     mapping(string => bool) public usernamesTaken;
     address[] public pubKeys;
 
-    event UserRegistered(string username, address publicKey);
-    event UserUpdated(string username, address publicKey);
+    event UserRegistered(string indexed username, address publicKey);
+    event UserUpdated(string indexed username, address publicKey);
 
     uint256 constant public REGISTRATION_COST = 5*10**14; // 0.0005 ether 
     uint256 constant public UPDATE_COST = 2*10**14; // 0.0002 ether
@@ -65,6 +65,11 @@ contract UserStorage {
     }
 
     function getUser(address _userAddress) public view returns (User memory) {
+	require(users[_userAddress].publicKey != address(0));
         return users[_userAddress];
+    }
+
+    function userExists(string memory _username) public view returns (bool) {
+    	return usernamesTaken[_username];  
     }
 }
