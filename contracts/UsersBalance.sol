@@ -16,7 +16,7 @@ contract UsersBalance {
 
     uint256 constant public DEPOSIT_LIMIT = 10000; // arbitrary value
     uint256 constant public DEPOSIT_MIN = 200; // arbitrary value
-    uint256 constant public DEPOSIT_COST = 0.000005 ether // arbitrary value
+    uint256 constant public DEPOSIT_COST = 0.000005 ether; // arbitrary value
     uint256 constant public WITHDRAW_COST = 0.0002 ether; // arbitrary value
     uint256 constant public DEPOSIT_LIMIT_PER_HOUR = 10;
     uint256 constant public SECONDS_PER_HOUR = 3600;
@@ -42,7 +42,7 @@ contract UsersBalance {
 		info.lastDepositTime = currentTime;
 		info.depositsCount = 1;
 	}else{
-		require(info.depositsCount+1 <= DEPOSIT_LIMIT_PER_HOUR,"Deposit limit reached for this hour")
+		require(info.depositsCount+1 <= DEPOSIT_LIMIT_PER_HOUR,"Deposit limit reached for this hour");
 		info.depositsCount += 1;
 	}
 	require(info.depositsCount <= DEPOSIT_LIMIT_PER_HOUR,"Deposit limit reached for this hour");
